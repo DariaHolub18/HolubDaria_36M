@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Свіжі сезонні страви та збалансовані раціони з доставкою від Eatsy.">
+    <meta name="theme-color" content="#2d4a2c">
+    <title>Eatsy — смакуй легко, живи зручно</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #20372b;
+            --muted: #69776d;
+            --paper: #ffeed5;
+            --white: #ffeed5;
+            --green: #285b40;
+            --lime: #d8eb8d;
+            --tomato: #db593f;
+            --line: #dfe2d8;
+            --serif: Georgia, 'Times New Roman', serif;
+            --sans: 'DM Sans', 'Manrope', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+        a { color: inherit; text-decoration: none; }
+        button, input { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        img { display: block; width: 100%; }
+        .wrap { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }
+        .skip-link { position: absolute; top: -60px; left: 16px; z-index: 10; padding: 12px 16px; background: var(--white); }
+        .skip-link:focus { top: 12px; }
+
+        .topline { min-height: 34px; display: grid; place-items: center; color: var(--white); background: var(--green); font-size: 11px; letter-spacing: .06em; }
+        .topline { min-height: 54px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; padding: 10px 18px; color: var(--white); background: var(--green); font-size: 13px; letter-spacing: 0; text-align: center; }
+        .topline-highlight { color: var(--lime); font-family: var(--serif); font-size: 17px; font-style: italic; font-weight: 700; }
+        .topline .separator { color: var(--lime); font-size: 16px; }
+        .site-header { position: relative; z-index: 2; border-bottom: 1px solid var(--line); background: var(--paper); }
+        .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+        .brand { display: inline-flex; align-items: center; gap: 9px; font-family: 'Manrope', var(--sans); font-size: 24px; font-weight: 800; letter-spacing: 0; }
+            .brand-logo { width: 55px; height: 55px; object-fit: contain; }
+        .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50% 50% 50% 4px; color: var(--white); background: var(--green); font-size: 17px; transform: rotate(-12deg); }
+        .nav-links { display: flex; align-items: center; gap: 34px; color: #435349; font-size: 13px; font-weight: 600; }
+        .nav-links a:hover, .footer-links a:hover { color: var(--tomato); }
+        .nav-cta, .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 3px; padding: 0 20px; color: var(--white); background: var(--green); font-size: 13px; font-weight: 700; transition: background .2s ease, transform .2s ease; }
+        .nav-cta:hover, .button:hover { background: #1c4831; transform: translateY(-2px); }
+        .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 3px; padding: 9px 12px; color: var(--ink); background: transparent; font-size: 13px; font-weight: 700; }
+
+        .hero { padding: 38px 0 42px; overflow: hidden; }
+            .hero { padding: 38px 0 42px; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: .91fr 1.09fr; align-items: center; gap: clamp(35px, 7vw, 94px); }
+        .eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 21px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+        .eyebrow::before { width: 22px; height: 1px; content: ''; background: var(--tomato); }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { max-width: 540px; margin-bottom: 21px; font-family: 'Manrope', var(--sans); font-size: clamp(48px, 5.7vw, 76px); line-height: 1.02; font-weight: 600; letter-spacing: 0; }
+        h1 em { color: var(--tomato); font-family: var(--serif); font-weight: 400; }
+            h1 em, .hero h2 em { color: var(--tomato); font-family: var(--serif); font-weight: 400; }
+        .hero-copy { max-width: 420px; margin-bottom: 28px; color: var(--muted); font-size: 15px; line-height: 1.75; }
+        .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+        .text-link { display: inline-flex; align-items: center; gap: 7px; color: var(--green); font-size: 13px; font-weight: 700; }
+        .text-link span { color: var(--tomato); font-size: 18px; transition: transform .2s ease; }
+        .text-link:hover span { transform: translateX(4px); }
+        .hero-note { display: flex; align-items: center; gap: 11px; margin-top: 43px; color: var(--muted); font-size: 11px; }
+        .avatar-stack { display: flex; padding-left: 5px; }
+        .avatar-stack img { width: 29px; height: 29px; margin-left: -5px; border: 2px solid var(--paper); border-radius: 50%; object-fit: cover; }
+        .hero-visual { position: relative; min-width: 0; }
+        .hero-photo { height: clamp(360px, 37vw, 450px); overflow: hidden; border-radius: 3px 3px 76px 3px; background: #d7dfca; }
+            .hero-photo { height: clamp(360px, 37vw, 450px); overflow: hidden; border-radius: 3px 3px 76px 3px; background: #d7dfca; }
+        .hero-photo img { height: 100%; object-fit: cover; }
+        .fresh-tag { position: absolute; right: -24px; bottom: 36px; display: grid; width: 112px; height: 112px; align-content: center; justify-items: center; border: 1px solid rgba(32,55,43,.12); border-radius: 50%; color: var(--green); background: var(--lime); text-align: center; transform: rotate(8deg); }
+        .fresh-tag strong { font-family: 'Manrope', var(--sans); font-size: 28px; line-height: 1; }
+        .fresh-tag span { max-width: 72px; margin-top: 6px; font-size: 9px; line-height: 1.3; }
+
+        .benefits { border-block: 1px solid var(--line); background: #eeefe5; }
+        .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+        .benefit { display: flex; align-items: center; gap: 15px; min-height: 91px; padding: 17px 26px; border-right: 1px solid var(--line); }
+        .benefit:first-child { padding-left: 0; }
+        .benefit:last-child { border: 0; }
+        .benefit-icon { display: grid; flex: 0 0 38px; width: 38px; height: 38px; place-items: center; border-radius: 50%; color: var(--green); background: var(--lime); font-family: var(--serif); font-size: 19px; }
+        .benefit strong { display: block; margin-bottom: 4px; font-size: 12px; }
+        .benefit small { color: var(--muted); font-size: 10px; }
+
+        .menu-section { padding: 88px 0 94px; background: var(--white); }
+        .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+        .section-head .eyebrow { margin-bottom: 12px; }
+        h2 { margin-bottom: 0; font-family: 'Manrope', var(--sans); font-size: clamp(32px, 4vw, 46px); line-height: 1.12; font-weight: 600; letter-spacing: 0; }
+            .hero-copy-wrap h2 { max-width: none; font-size: clamp(18px, 3vw, 36px); white-space: nowrap; }
+        .section-aside { max-width: 270px; margin-bottom: 3px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+        .meal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .meal { min-width: 0; }
+        .meal-photo { position: relative; height: 256px; overflow: hidden; border-radius: 3px; background: #e8e9df; }
+        .meal-photo img { height: 100%; object-fit: cover; transition: transform .45s ease; }
+        .meal:hover .meal-photo img { transform: scale(1.04); }
+        .meal-label { position: absolute; top: 13px; left: 13px; border-radius: 2px; padding: 7px 10px; color: var(--green); background: var(--lime); font-size: 10px; font-weight: 700; }
+        .meal-info { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 2px 0; }
+        .meal-info h3 { margin-bottom: 5px; font-size: 16px; font-weight: 700; }
+        .meal-info p { margin-bottom: 0; color: var(--muted); font-size: 11px; }
+        .price { flex: 0 0 auto; color: var(--green); font-size: 14px; font-weight: 700; }
+        .meal-actions { margin-top: 14px; }
+        .details-button { border: 0; padding: 5px 0; color: var(--green); background: transparent; font-size: 12px; font-weight: 700; text-decoration: underline; text-decoration-color: var(--tomato); text-underline-offset: 4px; cursor: pointer; }
+        .details-button:hover { color: var(--tomato); }
+        .program-dialog { width: min(520px, calc(100% - 32px)); max-width: none; border: 0; border-radius: 4px; padding: 0; color: var(--ink); background: var(--white); box-shadow: 0 24px 70px rgba(22, 35, 27, .25); }
+        .program-dialog::backdrop { background: rgba(22, 35, 27, .62); backdrop-filter: blur(3px); }
+        .program-dialog[open] { animation: dialog-rise 320ms cubic-bezier(.22, 1, .36, 1) both; }
+        .program-dialog[open]::backdrop { animation: backdrop-fade 320ms cubic-bezier(.22, 1, .36, 1) both; }
+        @keyframes dialog-rise {
+            from { opacity: 0; transform: translateY(12px) scale(.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes backdrop-fade {
+            from { background-color: rgba(22, 35, 27, 0); }
+            to { background-color: rgba(22, 35, 27, .62); }
+        }
+        .dialog-content { position: relative; padding: clamp(26px, 6vw, 42px); }
+        .dialog-close { position: absolute; top: 14px; right: 14px; display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; font-size: 21px; cursor: pointer; }
+        .dialog-eyebrow { margin: 0 0 12px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+        .program-dialog h2 { margin: 0 36px 16px 0; font-size: clamp(27px, 6vw, 36px); }
+        .dialog-description { min-height: 72px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; white-space: pre-line; }
+        .dialog-actions { margin-top: 24px; }
+        .dialog-order { width: 100%; }
+    .about-dialog { width: min(420px, calc(100% - 32px)); height: min(680px, calc(100dvh - 32px)); overflow: hidden; }
+    .about-dialog .dialog-content { display: flex; height: 100%; flex-direction: column; }
+    .about-dialog .dialog-description { flex: 1; overflow-y: auto; white-space: normal; }
+        .contact-dialog { height: fit-content; max-height: min(680px, calc(100dvh - 32px)); }
+        .contact-dialog .dialog-content { height: auto; }
+        .contact-dialog .dialog-description { flex: 0 1 auto; min-height: 0; }
+    .about-description p { margin-bottom: 18px; }
+    .about-description h3 { margin: 26px 0 10px; color: var(--green); font-family: 'Manrope', var(--sans); font-size: 16px; font-weight: 700; }
+    .about-description ol { display: grid; gap: 14px; margin: 0; padding-left: 21px; }
+    .about-description li { padding-left: 3px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .about-description li::marker { color: var(--tomato); font-weight: 700; }
+    .about-description strong { color: var(--ink); }
+    .contact-list { display: grid; align-content: start; }
+        .contact-list { display: grid; align-content: start; overflow-y: auto; }
+    .contact-item { display: grid; gap: 5px; margin: 0; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .contact-item strong { color: var(--ink); font-size: 13px; }
+    .contact-item span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+        .story { padding: 83px 0; background: #e9eee3; }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(38px, 8vw, 100px); }
+        .story-photo { height: 365px; overflow: hidden; border-radius: 3px 52px 3px 3px; background: #d4dccd; }
+        .story-photo img { height: 100%; object-fit: cover; }
+        .story-copy h2 { max-width: 450px; margin-bottom: 18px; }
+        .story-copy > p:not(.eyebrow) { max-width: 445px; margin-bottom: 25px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+        .story-points { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 18px; margin: 0; padding: 0; list-style: none; }
+        .story-points li { display: flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 700; }
+        .story-points li::before { content: '+'; color: var(--tomato); font-size: 17px; }
+
+        .newsletter { padding: 74px 0; color: var(--white); background: var(--green); }
+        .newsletter-grid { display: grid; grid-template-columns: 1fr minmax(320px, .78fr); align-items: center; gap: 55px; }
+        .newsletter .eyebrow { color: var(--lime); }
+        .newsletter .eyebrow::before { background: var(--tomato); }
+        .newsletter h2 { max-width: 510px; margin-bottom: 10px; }
+        .newsletter-copy { max-width: 490px; margin-bottom: 0; color: #d0dbd0; font-size: 13px; line-height: 1.7; }
+        .subscribe-form { display: flex; gap: 8px; }
+            .subscribe-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+            .subscribe-form .form-message { grid-column: 1 / -1; }
+        .subscribe-form input { flex: 1; min-width: 0; height: 48px; border: 1px solid rgba(255,255,255,.38); border-radius: 2px; padding: 0 14px; color: var(--ink); background: var(--white); font-size: 12px; }
+        .subscribe-form input:focus { outline: 2px solid var(--lime); outline-offset: 2px; }
+        .subscribe-form button { min-width: 105px; border: 0; border-radius: 2px; padding: 0 14px; color: var(--ink); background: var(--lime); font-size: 12px; font-weight: 700; cursor: pointer; }
+        .form-message { min-height: 18px; margin: 10px 0 0; color: var(--lime); font-size: 11px; }
+
+        .footer { padding: 26px 0; background: var(--paper); }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+        .footer .brand { font-size: 18px; }
+        .footer .brand-logo { width: 30px; height: 30px; }
+        .footer .brand-mark { width: 25px; height: 25px; font-size: 14px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 22px; color: var(--muted); font-size: 11px; }
+            .footer-links button { border: 0; padding: 0; color: inherit; background: transparent; font: inherit; cursor: pointer; }
+            .footer-links a:hover, .footer-links button:hover { color: var(--tomato); }
+        .copyright { color: var(--muted); font-size: 10px; }
+
+        @media (max-width: 760px) {
+            .wrap { width: min(100% - 38px, 560px); }
+            .nav { min-height: 68px; }
+            .menu-toggle { display: inline-flex; }
+            .nav-cta { display: none; }
+            .nav-links { position: absolute; top: 100%; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 19px 17px; border-bottom: 1px solid var(--line); background: var(--paper); }
+            .nav-links.is-open { display: flex; flex-direction: column; }
+            .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+            .nav-links a:last-child { border: 0; }
+            .hero { padding: 25px 0 30px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+            h1 { max-width: 470px; font-size: clamp(48px, 12vw, 68px); }
+            .hero-copy { font-size: 14px; }
+            .hero-note { margin-top: 27px; }
+            .hero-photo { height: min(68vw, 300px); border-bottom-right-radius: 48px; }
+            .fresh-tag { right: -7px; bottom: 18px; width: 92px; height: 92px; }
+            .fresh-tag strong { font-size: 24px; }
+            .benefit-grid { grid-template-columns: 1fr; }
+            .benefit, .benefit:first-child { min-height: 68px; padding: 12px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+            .benefit:last-child { border-bottom: 0; }
+            .menu-section { padding: 62px 0 66px; }
+            .section-head { align-items: start; flex-direction: column; margin-bottom: 22px; }
+            .section-aside { max-width: 410px; }
+            .meal-grid { grid-template-columns: 1fr; gap: 25px; }
+            .meal-photo { height: min(65vw, 340px); }
+            .story { padding: 60px 0; }
+            .story-grid { grid-template-columns: 1fr; gap: 30px; }
+            .story-photo { height: min(70vw, 360px); }
+            .newsletter { padding: 58px 0; }
+            .newsletter-grid { grid-template-columns: 1fr; gap: 24px; }
+            .footer-inner { align-items: flex-start; flex-direction: column; }
+            .footer-links { gap: 15px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+            .program-dialog[open], .program-dialog[open]::backdrop { animation: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти до вмісту</a>
+        <div class="topline"><span class="topline-highlight">Сезонне меню вже тут</span><span class="separator" aria-hidden="true">·</span>Доставка щодня з 9:00 до 21:00</div>
+    <header class="site-header">
+        <nav class="nav wrap" aria-label="Головна навігація">
+                        <a class="brand" href="#top" aria-label="Eatsy — на головну"><img class="brand-logo" src="assets/img/logo.png" alt=""><span>EATSY</span></a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Меню</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#menu">Меню</a>
+                <a href="#about">Наш підхід</a>
+                <a href="#subscribe">Для натхнення</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="hero wrap" id="top">
+            <div class="hero-grid">
+                <div class="hero-copy-wrap">
+                    <p class="eyebrow">Смачно. Просто. По-справжньому.</p>
+                    <h2>Смакуй <em>легко</em>, Живи <em>добре.</em></h2>
+                    <p class="hero-copy">Готуємо сезонні страви з простих інгредієнтів, щоб щоденна турбота про себе була не ще одним завданням, а справжнім задоволенням.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#menu">Обери свою категорію <span aria-hidden="true">↗</span></a>
+                        <a class="text-link" href="#about">Як ми готуємо <span aria-hidden="true">→</span></a>
+                    </div>
+                    <div class="hero-note">
+                        <div class="avatar-stack" aria-hidden="true">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" alt="">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=80&h=80&q=80" alt="">
+                        </div>
+                        <span><strong>4.9/5</strong> — нас люблять за смак, не за обіцянки</span>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-photo">
+                        <img src="https://firtka.if.ua/data/blog/303946/5ca0c0b52496ab322d35d355743c8a4a.png" alt="Барвиста сезонна страва зі свіжою зеленню, овочами та зерновими" fetchpriority="high">
+                    </div>
+                    <div class="fresh-tag" aria-label="Свіже щодня"><strong>100%</strong><span>свіже щодня</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits" aria-label="Наші принципи">
+            <div class="benefit-grid wrap">
+                <div class="benefit"><span class="benefit-icon" aria-hidden="true">✳</span><div><strong>Сезонні продукти</strong><small>Відбираємо найкраще зараз</small></div></div>
+                <div class="benefit"><span class="benefit-icon" aria-hidden="true">↗</span><div><strong>Без зайвого</strong><small>Зрозумілий склад кожної страви</small></div></div>
+                <div class="benefit"><span class="benefit-icon" aria-hidden="true">⌂</span><div><strong>Доставка до дверей</strong><small>Щодня, у зручний для тебе час</small></div></div>
+            </div>
+        </section>
+
+        <section class="menu-section" id="menu">
+            <div class="wrap">
+                <div class="section-head">
+                    <div><p class="eyebrow">Наші головні категорії</p><h2>Турбуємось про смаки <br>кожного клієнта</h2></div>
+                    <p class="section-aside">Збалансовані страви, які хочеться доїсти до останнього шматочка. Готуємо набором на день.</p>
+                </div>
+                <div class="meal-grid">
+                    <article class="meal">
+                        <div class="meal-photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmWWjKi1aK8DMf2d9bskNnJ9uKBevjQoiVq7O_4yTt6Q&s=10" alt="Поживний боул з овочами, зеленню та зерновими" loading="lazy"><span class="meal-label">Найпоживніше</span></div>
+                        <div class="meal-info"><div><h3>FitLife</h3><p>2400-2600 ккал</p></div><span class="price">700 ₴</span></div>
+                                            <div class="meal-actions"><button class="details-button" type="button" data-program-title="FitLife" data-program-description="Раціон, збалансований для підтримки енергії під час фізичних навантажень. Включає білки для відновлення м’язів, складні вуглеводи та корисні жири.">Деталі <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                    <article class="meal">
+                        <div class="meal-photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsPmvj-47akF4oSocymewoSmhTrJuKvl3b0Jed-Swfdg&s=10" alt="Свіжа корисна страва з овочами та зеленню" loading="lazy"><span class="meal-label">Частіше обирають</span></div>
+                        <div class="meal-info"><div><h3>Daily balance </h3><p>1200-1600 ккал</p></div><span class="price">600 ₴</span></div>
+                                            <div class="meal-actions"><button class="details-button" type="button" data-program-title="Daily balance" data-program-description="Повноцінне трьохразове харчування з перекусами, включає всі необхідні макро- та мікроелементи. Прості, але смачні страви, що забезпечують енергією протягом дня.">Деталі <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                    <article class="meal">
+                        <div class="meal-photo"><img src="https://res.cloudinary.com/servier/image/upload/q_70,w_768/v1636718922/strapi_upload/image_vegan_trend_7f1c4ef699.jpg" alt="Свіжі інгредієнти для здорового збалансованого меню" loading="lazy"><span class="meal-label">Рослинне</span></div>
+                        <div class="meal-info"><div><h3>Green Harmony</h3><p>1200-1600 ккал</p></div><span class="price">600 ₴</span></div>
+                                            <div class="meal-actions"><button class="details-button" type="button" data-program-title="Green Harmony" data-program-description="Вегетаріанці та люди, які віддають перевагу рослинному харчуванню.
+Раціон на основі рослинних інгредієнтів, багатий на насіння та горіхів, вітаміни й мінерали з овочів і фруктів.">Деталі <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                    <article class="meal">
+                        <div class="meal-photo"><img src="https://pic.sport.ua/media/images/healthy/menyu-pravilnogo-pitaniya/image3.jpg" alt="Свіжі інгредієнти для здорового збалансованого меню" loading="lazy"><span class="meal-label">Спеціалізоване</span></div>
+                        <div class="meal-info"><div><h3>Dieters</h3><p>1200-1600 ккал</p></div><span class="price">800 ₴</span></div>
+                                            <div class="meal-actions"><button class="details-button" type="button" data-program-title="Dieters" data-program-description="Спеціально розроблений раціон для людей з індивідуальними харчовими потребами. Виключає алергени, такі як глютен і лактоза. Забезпечує організм необхідними речовинами без ризику для здоров'я.".">Деталі <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <dialog class="program-dialog" id="program-dialog" aria-labelledby="program-title" aria-describedby="program-description">
+            <div class="dialog-content">
+                <button class="dialog-close" id="dialog-close" type="button" aria-label="Закрити вікно">×</button>
+                <p class="dialog-eyebrow">Програма харчування</p>
+                <h2 id="program-title"></h2>
+                <p class="dialog-description" id="program-description"></p>
+                <div class="dialog-actions"><a class="button dialog-order" id="program-order" href="mailto:privit@lystok.food">Замовити <span aria-hidden="true">↗</span></a></div>
+            </div>
+        </dialog>
+
+        <section class="story" id="about">
+            <div class="story-grid wrap">
+                <div class="story-photo"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80" alt="Свіжі овочі та зелень для щоденного приготування" loading="lazy"></div>
+                <div class="story-copy">
+                    <p class="eyebrow">Добре починається з простого</p>
+                    <h2>Не дієта.<br>Просто турбота.</h2>
+                    <p>Ми віримо в нормальну їжу: щедру на смак, приготовлену з увагою та без складних правил. Знайомимося з фермерами, стежимо за сезоном і щодня готуємо так, як для своїх.</p>
+                    <ul class="story-points"><li>Знайомі інгредієнти</li><li>Менше харчових відходів</li><li>Більше овочів у меню</li><li>Смак без компромісів</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter" id="subscribe">
+            <div class="newsletter-grid wrap">
+                <div><p class="eyebrow">Лист від Eatsy</p><h2>Трохи корисного<br>у твою пошту</h2><p class="newsletter-copy">Надсилатимемо сезонні рецепти, новинки меню та ідеї для смачних буднів. Без спаму, обіцяємо.</p></div>
+                <form class="subscribe-form" id="subscribe-form">
+                    <div style="flex: 1; min-width: 0"><label for="email" class="skip-link">Твоя електронна пошта</label><input id="email" name="email" type="email" placeholder="Твоя електронна пошта" autocomplete="email" required></div>
+                    <button type="submit">Підписатись</button>
+                    <p class="form-message" id="form-message" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner wrap">
+            <a class="brand" href="#top" aria-label="Eatsy — на головну"><img class="brand-logo" src="logo.png" alt=""><span>EATSY</span></a>
+                        <div class="footer-links"><a href="#menu">Меню</a><button id="about-open" type="button">Про нас</button><button id="contact-open" type="button">Написати нам</button></div>
+            <span class="copyright">© 2026 Eatsy. Їж із задоволенням.</span>
+        </div>
+    </footer>
+
+    <dialog class="program-dialog about-dialog" id="about-dialog" aria-labelledby="about-title" aria-describedby="about-description">
+        <div class="dialog-content">
+            <button class="dialog-close" id="about-dialog-close" type="button" aria-label="Закрити вікно">×</button>
+            <p class="dialog-eyebrow">Eatsy</p>
+            <h2 id="about-title">Про нас</h2>
+            <div class="dialog-description about-description" id="about-description">
+                <p>Готові раціони з щоденною доставкою додому. Ви почнете краще себе почувати, пройде втома, сонливість і буде більше енергії на виконання справ.</p>
+                <h3>Наша місія</h3>
+                <p>Eatsy прагне зробити здорове харчування доступним, смачним і простим для кожного. Ми хочемо допомогти вам зберегти час і сили на важливі речі, забезпечуючи повноцінний раціон, який відповідає вашому способу життя і персональним цілям.</p>
+                <h3>Основні переваги</h3>
+                <ol>
+                    <li><strong>Прозора інформація:</strong> всі страви супроводжуються детальною інформацією про калорійність, склад, рівень білків, жирів та вуглеводів, а також наявність можливих алергенів.</li>
+                    <li><strong>Екологічна упаковка:</strong> всі наші страви доставляються у сертифікованих екологічних контейнерах, придатних для повторного використання, що додає бонус для екосвідомих споживачів.</li>
+                    <li><strong>Зручність доставки:</strong> ми організували доставку таким чином, щоб клієнти отримували їжу свіжою та зручною до вживання у будь-який зручний для них час. Кур'єри доставляють раціони вчасно у зазначені часові інтервали, що дозволяє клієнтам не відволікатися від своїх справ.</li>
+                </ol>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="program-dialog about-dialog contact-dialog" id="contact-dialog" aria-labelledby="contact-title" aria-describedby="contact-list">
+        <div class="dialog-content">
+            <button class="dialog-close" id="contact-dialog-close" type="button" aria-label="Закрити вікно">×</button>
+            <p class="dialog-eyebrow">Eatsy</p>
+            <h2 id="contact-title">Написати нам</h2>
+            <div class="dialog-description contact-list" id="contact-list">
+                <p class="contact-item"><strong>Instagram</strong><span>@eatsyfloripa</span></p>
+                <p class="contact-item"><strong>Telegram</strong><span>@eatsyfloripa</span></p>
+                <p class="contact-item"><strong>Телефон</strong><span>+38(099) 944-72-96</span></p>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isOpen));
+            navLinks.classList.toggle('is-open', !isOpen);
+        });
+
+        navLinks.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('is-open');
+            }
+        });
+
+        const programDialog = document.querySelector('#program-dialog');
+        const programTitle = document.querySelector('#program-title');
+        const programDescription = document.querySelector('#program-description');
+        const programOrder = document.querySelector('#program-order');
+        const aboutDialog = document.querySelector('#about-dialog');
+        const contactDialog = document.querySelector('#contact-dialog');
+
+        document.querySelector('#about-open').addEventListener('click', () => aboutDialog.showModal());
+        document.querySelector('#about-dialog-close').addEventListener('click', () => aboutDialog.close());
+        aboutDialog.addEventListener('click', (event) => {
+            if (event.target === aboutDialog) aboutDialog.close();
+        });
+
+        document.querySelector('#contact-open').addEventListener('click', () => contactDialog.showModal());
+        document.querySelector('#contact-dialog-close').addEventListener('click', () => contactDialog.close());
+        contactDialog.addEventListener('click', (event) => {
+            if (event.target === contactDialog) contactDialog.close();
+        });
+
+        document.querySelectorAll('.details-button').forEach((button) => {
+            button.addEventListener('click', () => {
+                const { programTitle: title, programDescription: description } = button.dataset;
+                programTitle.textContent = title;
+                programDescription.textContent = description;
+                programOrder.href = `mailto:privit@lystok.food?subject=${encodeURIComponent(`Замовлення: ${title}`)}`;
+                programDialog.showModal();
+            });
+        });
+
+        document.querySelector('#dialog-close').addEventListener('click', () => programDialog.close());
+        programDialog.addEventListener('click', (event) => {
+            if (event.target === programDialog) programDialog.close();
+        });
+
+        document.querySelector('#subscribe-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = document.querySelector('#email');
+            document.querySelector('#form-message').textContent = `Дякуємо! Новини надішлемо на ${email.value}.`;
+            event.currentTarget.reset();
+        });
+    </script>
+</body>
+</html>
